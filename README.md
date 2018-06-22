@@ -4,8 +4,7 @@ Compute the multivariate effective sample size (*mESS*) of a Markov chain,
 using the multivariate dependence structure of the process.
 
 This is a Python implementation of the [MATLAB implementation][3] of the *mESS*
-estimation method described in [Vats et al. (2015)][1]
-
+estimation method described in [Vats et al. (2015)][1].
 The MATLAB code has some minor tweaks for the choice of batch size *b* for the 
 computation of the Monte Carlo covariance matrix.
 
@@ -22,7 +21,7 @@ with the same covariance structure as the current chain.
 
 *mESS* is given by
 
-    *mESS* = *n* |Λ|^{1/*p*}/ |Σ|^{1/*p*}
+    mESS = n |Λ|^{1/p}/ |Σ|^{1/p}
 
 where *n* is the current sample size, Λ is the sample covariance matrix,
 *p* is the number of parameters and Σ is an estimate of the Monte Carlo
