@@ -36,7 +36,7 @@ def multiESS(X, b='sqroot', Noffsets=10, Nb=None):
 
     """
 
-    # MCMC chains, samples, and parameters
+    # MCMC samples and parameters
     n, p = X.shape
 
     if p > n:
@@ -59,7 +59,7 @@ def multiESS(X, b='sqroot', Noffsets=10, Nb=None):
             raise ValueError(
                 "The batch size B needs to be between 1 and N/2.")
 
-    # Compute multiESS separately for each chain
+    # Compute multiESS for the chain
     mESS = multiESS_chain(X, n, p, b, Noffsets, Nb)
 
     return mESS
@@ -113,7 +113,7 @@ def multiESS_batch(Xi, n, p, theta, detLambda, b, Noffsets):
         np.linspace(0, n - np.dot(a, b), Noffsets))))))
 
     for j in offsets:
-        # TODO swapped a, b in reshape
+        # Swapped a, b in reshape compared to the original code.
         Y = Xi[j + np.arange(a * b), :].reshape((a, b, p))
         Ybar = np.squeeze(np.mean(Y, axis=1))
         Z = Ybar - theta

@@ -12,7 +12,7 @@ See also the R package [mcmcse][1] for a separate implementation.
 
 *Disclaimer:* This is a stripped down version of the original MATLAB code.
 Most notably it does neither accept nor return the Monte Carlo covariance
-matrix and does snot return the batch size.
+matrix and does not return the batch size. It processes *one* chain at a time.
 
 ## Details
 
