@@ -1,5 +1,28 @@
 
 import numpy as np
+from scipy.stats import chi2
+from scipy.special import gammaln
+
+
+def fminESS(p, alpha=.05, eps=.05, ess=None):
+    """
+    Minimum effective sample size
+    """
+
+    crit = chi2.ppf(1 - alpha, p)
+    foo = 2. / p
+
+    if ess is None:
+        logminESS = foo * np.log(2.) + np.log(np.pi) - foo * np.log(p) -\
+            foo * gammaln(p / 2.) - 2. * np.log(eps) + np.log(crit)
+        return np.round(np.exp(logminESS))
+    else:
+        if isinstance(ess, str):
+            raise ValueError("Only numeric entry allowed for ess")
+        logEPS = .5 * foo * np.log(2.) + .5 * np.log(np.pi) -\
+            .5 * foo * np.log(p) - .5 * foo * gammaln(p / 2.) -\
+            .5 * np.log(ess) + .5 * np.log(crit)
+        return np.exp(logEPS)
 
 
 def multiESS(X, b='sqroot', Noffsets=10, Nb=None):
